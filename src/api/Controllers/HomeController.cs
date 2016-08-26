@@ -17,7 +17,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return new JsonResult(new { System = _settings.Value.LogLevel.System });
+            return new JsonResult(new { _settings.Value.LogLevel.System });
         }
 
         //// GET api/values/5
