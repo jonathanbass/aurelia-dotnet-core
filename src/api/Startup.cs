@@ -23,6 +23,7 @@ namespace api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddSingleton(Configuration);
             services.Configure<Logging>(Configuration.GetSection("Logging"));
             services.AddMvc();
@@ -33,6 +34,8 @@ namespace api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors(builder =>
+               builder.WithOrigins("*"));
             app.UseMvc();
         }
     }

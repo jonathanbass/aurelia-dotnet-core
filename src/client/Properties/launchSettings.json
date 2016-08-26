@@ -19,7 +19,7 @@
     "client": {
       "commandName": "client",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5300/app/hello-world.html",
+      "launchUrl": "http://localhost:5300/app/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
