@@ -17,9 +17,9 @@
       }
     },
     "client": {
-      "commandName": "Project",
+      "commandName": "client",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/hello-world.html",
+      "launchUrl": "http://localhost:5300/hello-world.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

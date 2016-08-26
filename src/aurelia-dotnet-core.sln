@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "api", "src\api\api.xproj", "{999DEEF9-3D9A-4EDC-9B4D-EFB2C891DB89}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "api", "api\api.xproj", "{999DEEF9-3D9A-4EDC-9B4D-EFB2C891DB89}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "client", "..\client\client.xproj", "{95D2B8D1-4414-40B8-8BCD-BA8A46A3DCB4}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "client", "client\client.xproj", "{95D2B8D1-4414-40B8-8BCD-BA8A46A3DCB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
