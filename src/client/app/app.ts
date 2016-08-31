@@ -12,7 +12,7 @@ export class App {
 
         this.http = http;
     }
-
+    // BLAH!!!
     message: string;
     http: HttpClient;
 
@@ -21,9 +21,10 @@ export class App {
     }
 
     getSystem() {
-        this.message = this.http.fetch("home")
-            .then(response => response.json()).then(data => {
-                this.message = ( data).system;
-            })
+        this.http.fetch("home")
+            .then(response => response.json())
+            .then(data => {
+                this.message = (data).system;
+            });
     }
 }

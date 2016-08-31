@@ -21,8 +21,9 @@ var App = (function () {
     };
     App.prototype.getSystem = function () {
         var _this = this;
-        this.message = this.http.fetch("home")
-            .then(function (response) { return response.json(); }).then(function (data) {
+        this.http.fetch("home")
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
             _this.message = (data).system;
         });
     };
@@ -32,4 +33,3 @@ var App = (function () {
     return App;
 }());
 exports.App = App;
-//# sourceMappingURL=app.js.map
