@@ -1,6 +1,15 @@
 ﻿<template>
-    <div>
-        <div>${message}</div>
-        <button click.trigger="getSystem()">Say Goodbye</button>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-2 text-right"><str1ong>Task:</str1ong></div>
+                <div class="col-md-3"><input type="text" class="full-width" value.bind="taskToAdd"/></div>
+                <div class="col-md-2"><button type="button" click.trigger="getTasks()">Add Task</button></div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            ${message}
+        </div>
     </div>
 </template>

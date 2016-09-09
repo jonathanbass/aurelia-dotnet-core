@@ -1,5 +1,6 @@
 ﻿import {inject} from "aurelia-framework";
-import {HttpClient} from "aurelia-fetch-client";
+import {HttpClient, json} from "aurelia-fetch-client";
+import {Task} from ".\Task";
 
 @inject(HttpClient)
 export class App {
@@ -7,24 +8,44 @@ export class App {
         this.message = "";
         http.configure(config => {
             config
-                .withBaseUrl("http://localhost:5400/");
-        });
+                //.useStandardConfiguration()
+                .withBaseUrl("http://localhost:5400/")
+                // .withDefaults({
+                //     headers: {
+                //     'Access-Control-Allow-Origin':'*',
+                //     'content-type': 'application/json',
+                //     'Accept': 'application/json',
+                //     'X-Requested-With': 'Fetch'
+                //     }
+                // })
+            });
 
         this.http = http;
+        this.tasks = [];
     }
-    // BLAH!!!
+
     message: string;
     http: HttpClient;
+    tasks: Task[];
+    taskToAdd: string;
 
-    activate() {
-        this.message = "Hello, World!";
-    }
-
-    getSystem() {
-        this.http.fetch("home")
+    getTasks() {
+        this.http.fetch("tasks/", {
+            method: "post",
+            body: json({
+                    "id": this.tasks.length + 1,
+                    "description": this.taskToAdd,
+                    "completed": false
+                  }),
+            // headers: {
+                    
+            //         'content-type': 'application/json',
+                   
+            //         }      
+            })
             .then(response => response.json())
             .then(data => {
-                this.message = (data).system;
+                this.message = data[0].description;
             });
     }
 }
