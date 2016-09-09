@@ -30,19 +30,7 @@ export class App {
     taskToAdd: string;
 
     getTasks() {
-        this.http.fetch("tasks/", {
-            method: "post",
-            body: json({
-                    "id": this.tasks.length + 1,
-                    "description": this.taskToAdd,
-                    "completed": false
-                  }),
-            // headers: {
-                    
-            //         'content-type': 'application/json',
-                   
-            //         }      
-            })
+        this.http.fetch("tasks/")
             .then(response => response.json())
             .then(data => {
                 this.message = data[0].description;

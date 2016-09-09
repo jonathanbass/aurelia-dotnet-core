@@ -40,14 +40,7 @@ System.register(["aurelia-framework", "aurelia-fetch-client"], function(exports_
                     this.tasks = [];
                 }
                 getTasks() {
-                    this.http.fetch("tasks/", {
-                        method: "post",
-                        body: aurelia_fetch_client_1.json({
-                            "id": this.tasks.length + 1,
-                            "description": this.taskToAdd,
-                            "completed": false
-                        }),
-                    })
+                    this.http.fetch("tasks/")
                         .then(response => response.json())
                         .then(data => {
                         this.message = data[0].description;

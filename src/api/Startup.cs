@@ -1,4 +1,5 @@
 ﻿using api.Config;
+using api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,7 @@ namespace api
         {
             services.AddCors();
             services.AddSingleton(Configuration);
+            services.AddSingleton<IContext, Context>();
             services.Configure<Logging>(Configuration.GetSection("Logging"));
             services.AddMvc();
         }
