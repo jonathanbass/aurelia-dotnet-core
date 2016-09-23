@@ -1,3 +1,7 @@
+# Compiled JavaScript
+app/**/*.js
+app/**/*.js.map
+
 # Logs
 logs
 *.log
@@ -37,12 +41,7 @@ jspm_packages
 # Optional npm cache directory
 .npm
 
+#
+
 # Optional REPL history
 .node_repl_history
-
-# Compiled JavaScript
-app/**/*.js
-app/**/*.js.map
-
-# Typings 
-typings
