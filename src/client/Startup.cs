@@ -32,9 +32,9 @@ namespace client
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            app.UseCors(builder =>
-                builder.WithOrigins("*"));
-            app.UseStaticFiles(new StaticFileOptions()
+
+            app.UseCors(builder => builder.WithOrigins("*"));
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), @"app")),

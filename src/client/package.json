@@ -11,5 +11,8 @@
     "devDependencies": {
       "typescript": "npm:typescript@^1.8.10"
     }
+  },
+  "dependencies": {
+    "typescript": "^2.0.2"
   }
 }

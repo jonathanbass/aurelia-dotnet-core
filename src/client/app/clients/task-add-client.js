@@ -1,4 +1,4 @@
-System.register(['aurelia-framework', './Tasks', "aurelia-fetch-client"], function(exports_1, context_1) {
+System.register(["aurelia-framework", "aurelia-fetch-client"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,23 +10,18 @@ System.register(['aurelia-framework', './Tasks', "aurelia-fetch-client"], functi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var aurelia_framework_1, Tasks_1, aurelia_fetch_client_1;
-    var App;
+    var aurelia_framework_1, aurelia_fetch_client_1;
+    var TaskAddClient;
     return {
         setters:[
             function (aurelia_framework_1_1) {
                 aurelia_framework_1 = aurelia_framework_1_1;
             },
-            function (Tasks_1_1) {
-                Tasks_1 = Tasks_1_1;
-            },
             function (aurelia_fetch_client_1_1) {
                 aurelia_fetch_client_1 = aurelia_fetch_client_1_1;
             }],
         execute: function() {
-            // @inject(TaskAddClient)
-            // @singleton()
-            App = class App {
+            TaskAddClient = class TaskAddClient {
                 constructor(http) {
                     http.configure(config => {
                         config
@@ -35,7 +30,6 @@ System.register(['aurelia-framework', './Tasks', "aurelia-fetch-client"], functi
                             .withDefaults({
                             headers: {
                                 'Accept': 'application/json',
-                                'content-type': 'application/json'
                             }
                         });
                     });
@@ -44,24 +38,29 @@ System.register(['aurelia-framework', './Tasks', "aurelia-fetch-client"], functi
                 }
                 addTask(taskToAdd, id) {
                     let body = {
-                        id: id + 1,
-                        description: taskToAdd,
-                        completed: false
+                        "id": id,
+                        "description": taskToAdd,
+                        "completed": false
                     };
-                    this.tasks.push(new Tasks_1.Tasks.Task(body.id, body.description, body.completed));
                     this.http.fetch("tasks/", {
                         method: "post",
-                        body: JSON.stringify(body)
+                        body: JSON.stringify(body),
+                        headers: {
+                            'content-type': 'application/json'
+                        }
                     })
-                        .then()
-                        .then();
+                        .then(response => { })
+                        .then(data => {
+                        //this.message = data[0].description;
+                    });
                 }
             };
-            App = __decorate([
-                aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient), 
+            TaskAddClient = __decorate([
+                aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient),
+                aurelia_framework_1.singleton(), 
                 __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient])
-            ], App);
-            exports_1("App", App);
+            ], TaskAddClient);
+            exports_1("TaskAddClient", TaskAddClient);
         }
     }
 });
