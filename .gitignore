@@ -37,11 +37,12 @@ jspm_packages
 # Optional npm cache directory
 .npm
 
-#
-
 # Optional REPL history
 .node_repl_history
 
 # Compiled JavaScript
-src/client/app/**/*.js
-src/client/app/**/*.js.map
+app/**/*.js
+app/**/*.js.map
+
+# Typings 
+typings
