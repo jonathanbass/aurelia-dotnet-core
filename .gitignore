@@ -1,6 +1,6 @@
 # Compiled JavaScript
-/app/*.js
-/app/*.js.map
+/src/client/app/**/*.js
+/src/client/app/**/*.js.map
 
 # Logs
 logs
