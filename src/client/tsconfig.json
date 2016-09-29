@@ -4,5 +4,7 @@
         "experimentalDecorators": true,
         "module": "system",
         "target": "ES2015" 
-    }
+    },
+    "include": ["./app/**/*.ts"],
+    "exclude": ["node_modules", "./app/jspm_packages"]
 }

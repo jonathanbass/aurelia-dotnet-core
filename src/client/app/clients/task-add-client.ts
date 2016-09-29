@@ -1,13 +1,10 @@
-﻿/// <reference path="../typings/index.d.ts" />
-import {inject, singleton} from 'aurelia-framework';
-import {Tasks} from './Tasks';
-//import {TaskAddClient} from './clients/task-add-client';
+import {inject, singleton} from "aurelia-framework";
 import {HttpClient, json} from "aurelia-fetch-client";
+import {Tasks} from "../Tasks";
 
-// @inject(TaskAddClient)
-// @singleton()
 @inject(HttpClient)
-export class App {
+@singleton()
+export class TaskAddClient {
     constructor(http: HttpClient) {
         http.configure(config => {
             config
@@ -16,7 +13,6 @@ export class App {
                 .withDefaults({
                     headers: {
                         'Accept': 'application/json',
-                        'content-type': 'application/json'
                     }
                 });
         });
@@ -30,18 +26,21 @@ export class App {
 
     addTask(taskToAdd: string, id: number) {
         let body = {
-            id: id + 1,
-            description: taskToAdd,
-            completed: false
+            "id": id,
+            "description": taskToAdd,
+            "completed": false
         };
-
-        this.tasks.push(new Tasks.Task(body.id, body.description, body.completed));
 
         this.http.fetch("tasks/", {
             method: "post",
-            body: JSON.stringify(body)    
+            body: JSON.stringify(body),
+            headers: {        
+                'content-type': 'application/json'
+            }      
         })
-        .then()
-        .then();
+        .then(response => {})
+        .then(data => {
+            //this.message = data[0].description;
+        });
     }
 }

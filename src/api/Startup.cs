@@ -24,7 +24,14 @@ namespace api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowClientHost", policy =>
+                    policy.WithOrigins("http://localhost:5300")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddSingleton(Configuration);
             services.AddSingleton<IContext, Context>();
             services.Configure<Logging>(Configuration.GetSection("Logging"));
@@ -36,8 +43,7 @@ namespace api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseCors(builder =>
-               builder.WithOrigins("*"));
+            app.UseCors("AllowClientHost");
             app.UseMvc();
         }
     }
