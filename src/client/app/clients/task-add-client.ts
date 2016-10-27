@@ -1,46 +1,24 @@
-import {inject, singleton} from "aurelia-framework";
-import {HttpClient, json} from "aurelia-fetch-client";
-import {Tasks} from "../Tasks";
+import {autoinject} from "aurelia-framework";
+import {BaseHttpClient} from "./base-http-client";
 
-@inject(HttpClient)
-@singleton()
+@autoinject(BaseHttpClient)
 export class TaskAddClient {
-    constructor(http: HttpClient) {
-        http.configure(config => {
-            config
-                .useStandardConfiguration()
-                .withBaseUrl("http://localhost:5400/")
-                .withDefaults({
-                    headers: {
-                        'Accept': 'application/json',
-                    }
-                });
-        });
+    constructor(private baseHttpClient: BaseHttpClient) {}
 
-        this.http = http;
-        this.tasks = [];
-    }
-
-    http: HttpClient;
-    tasks: Tasks.Task[];
-
-    addTask(taskToAdd: string, id: number) {
-        let body = {
+    addTask(id: number, taskToAdd: string) {
+        const body = {
             "id": id,
             "description": taskToAdd,
             "completed": false
         };
 
-        this.http.fetch("tasks/", {
+        this.baseHttpClient.http.fetch("tasks/",
+        {
             method: "post",
             body: JSON.stringify(body),
-            headers: {        
-                'content-type': 'application/json'
-            }      
-        })
-        .then(response => {})
-        .then(data => {
-            //this.message = data[0].description;
+            headers: {
+                "content-type": "application/json"
+            }
         });
     }
 }

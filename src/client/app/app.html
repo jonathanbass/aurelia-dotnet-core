@@ -2,9 +2,13 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-2 text-right"><str1ong>Task:</str1ong></div>
-                <div class="col-md-3"><input type="text" class="full-width" value.bind="taskToAdd"/></div>
-                <div class="col-md-2"><button type="button" click.trigger="addTask(taskToAdd, tasks.length)">Add Task</button></div>
+                <form role="form" submit.delegate="addTask()" validate.bind="validation" action="submit" class="form-group">
+                    <div class="col-md-2 text-right">
+                        <str1ong>Task:</str1ong>
+                    </div>
+                    <div class="col-md-3"><input type="text" class="full-width" value.bind="taskToAdd" focus.bind="hasFocus" /></div>
+                    <div class="col-md-2"><button type="submit">Add Task</button></div>
+                </form>
             </div>
         </div>
 

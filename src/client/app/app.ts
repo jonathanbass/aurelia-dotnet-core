@@ -1,47 +1,34 @@
 ﻿/// <reference path="../typings/index.d.ts" />
-import {inject, singleton} from 'aurelia-framework';
-import {Tasks} from './Tasks';
-//import {TaskAddClient} from './clients/task-add-client';
-import {HttpClient, json} from "aurelia-fetch-client";
+import {autoinject} from "aurelia-framework";
+import {Tasks} from "./Tasks";
+import {TaskAddClient} from "./clients/task-add-client";
+import {TaskDeleteClient} from "./clients/task-delete-client";
 
-// @inject(TaskAddClient)
-// @singleton()
-@inject(HttpClient)
+@autoinject(TaskAddClient)
+@autoinject(TaskDeleteClient)
 export class App {
-    constructor(http: HttpClient) {
-        http.configure(config => {
-            config
-                .useStandardConfiguration()
-                .withBaseUrl("http://localhost:5400/")
-                .withDefaults({
-                    headers: {
-                        'Accept': 'application/json',
-                        'content-type': 'application/json'
-                    }
-                });
-        });
-
-        this.http = http;
+    constructor(private taskAddClient: TaskAddClient, private taskDeleteClient: TaskDeleteClient) {
         this.tasks = [];
+        this.hasFocus = true;
     }
 
-    http: HttpClient;
+    taskToAdd: string;
     tasks: Tasks.Task[];
+    hasFocus: boolean;
 
-    addTask(taskToAdd: string, id: number) {
-        let body = {
-            id: id + 1,
-            description: taskToAdd,
-            completed: false
-        };
+    getTasks() {
+        
+    }
 
-        this.tasks.push(new Tasks.Task(body.id, body.description, body.completed));
+    addTask() {
+        const task = new Tasks.Task(this.tasks.length + 1, this.taskToAdd, false);
+        this.taskAddClient.addTask(task.id, task.description);
 
-        this.http.fetch("tasks/", {
-            method: "post",
-            body: JSON.stringify(body)    
-        })
-        .then()
-        .then();
+        this.tasks.push(task);
+        this.taskToAdd = "";
+    }
+
+    deleteTask(id: number) {
+        this.taskDeleteClient.deleteTask(id);
     }
 }
