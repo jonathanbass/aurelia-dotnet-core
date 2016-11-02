@@ -6,7 +6,7 @@ namespace api.Data
     {
         List<Task> GetTasks();
         void AddTask(Task task);
-        void DeleteTask(int id);
+        void DeleteTask(string desc);
     }
 
     public class Context : IContext
@@ -28,9 +28,9 @@ namespace api.Data
             Tasks.Add(task);
         }
 
-        public void DeleteTask(int id)
+        public void DeleteTask(string desc)
         {
-            Tasks.RemoveAll(t => t.Id == id);
+            Tasks.RemoveAll(t => t.Description == desc);
         }
     }
 }

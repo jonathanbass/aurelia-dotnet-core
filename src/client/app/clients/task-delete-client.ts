@@ -1,12 +1,12 @@
-import { autoinject } from "aurelia-framework";
-import { BaseHttpClient } from "./base-http-client";
+import {autoinject} from "aurelia-framework";
+import {HttpClient} from "aurelia-fetch-client";
 
-@autoinject(BaseHttpClient)
+@autoinject(HttpClient)
 export class TaskDeleteClient {
-    constructor(private baseHttpClient: BaseHttpClient) {}
+    constructor(private http: HttpClient) {}
 
-    deleteTask(id: number) {
-        this.baseHttpClient.http.fetch("tasks/${id}",
+    deleteTask(desc: string) {
+        return this.http.fetch(`tasks/${desc}`,
             {
                 method: "delete"
             });

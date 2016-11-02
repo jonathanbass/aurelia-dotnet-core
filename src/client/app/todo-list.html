@@ -1,0 +1,23 @@
+﻿<template>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<form role="form" submit.delegate="addTask()" validate.bind="validation" action="submit" class="form-group">
+					<div class="col-md-2 text-right">
+						<strong>Task:</strong>
+					</div>
+					<div class="col-md-3"><input type="text" class="full-width" value.bind="taskToAdd" focus.bind="hasFocus" /></div>
+					<div class="col-md-2"><button type="submit">Add Task</button></div>
+				</form>
+			</div>
+		</div>
+		<div>
+		    <div class="tasks" repeat.for="task of tasks">
+		        <div class="panel panel-default panel-body row col-md-8">
+		            <div class="col-md-11"><strong>${task.description}</strong></div>
+		            <div class="col-md-1"><button type="button" click.delegate="deleteTask(task.description)">X</button></div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</template>

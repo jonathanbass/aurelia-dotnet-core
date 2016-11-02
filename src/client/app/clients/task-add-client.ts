@@ -1,9 +1,9 @@
 import {autoinject} from "aurelia-framework";
-import {BaseHttpClient} from "./base-http-client";
+import {HttpClient} from "aurelia-fetch-client";
 
-@autoinject(BaseHttpClient)
+@autoinject(HttpClient)
 export class TaskAddClient {
-    constructor(private baseHttpClient: BaseHttpClient) {}
+    constructor(private http: HttpClient) {}
 
     addTask(id: number, taskToAdd: string) {
         const body = {
@@ -12,7 +12,7 @@ export class TaskAddClient {
             "completed": false
         };
 
-        this.baseHttpClient.http.fetch("tasks/",
+        return this.http.fetch("tasks/",
         {
             method: "post",
             body: JSON.stringify(body),

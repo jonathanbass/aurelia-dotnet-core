@@ -1,12 +1,13 @@
-import { autoinject } from "aurelia-framework";
-import { BaseHttpClient } from "./base-http-client";
+import {autoinject} from "aurelia-framework";
+import {HttpClient} from "aurelia-fetch-client";
+import {Tasks} from "../Tasks";
 
-@autoinject(BaseHttpClient)
+@autoinject(HttpClient)
 export class TaskGetClient {
-    constructor(private baseHttpClient: BaseHttpClient) { }
+    constructor(private http: HttpClient) { }
 
-    getTasks() {
-        this.baseHttpClient.http.fetch("tasks",
+    getTasks(): Promise<any> {
+        return this.http.fetch("tasks",
             {
                 method: "get",
                 headers: {

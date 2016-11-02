@@ -1,5 +1,4 @@
-﻿using System.Net;
-using api.Config;
+﻿using api.Config;
 using api.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -30,10 +29,10 @@ namespace api.Controllers
             _context.AddTask(task);
         }
 
-        [HttpDelete("{id}")]
-        public void DeleteTask(int id)
+        [HttpDelete("{description}")]
+        public void DeleteTask(string description)
         {
-            _context.DeleteTask(id);
+            _context.DeleteTask(description);
         }
     }
 }
